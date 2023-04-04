@@ -2,10 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import MemberPage from "./card/memberspage";
-
+import "./backendapidata.css";
 
 const ApiData = (props) => {
-
   const [data, setData] = useState([]);
 
   const fetchApiData = async () => {
@@ -23,13 +22,20 @@ const ApiData = (props) => {
   useEffect(() => {
     fetchApiData();
   }, []);
-    
+
   console.log(data);
 
   return (
     <div>
       {data.map((item) => (
-        <MemberPage key={item.id} name={item.name} profile_image={item.profile_image} id={item.id} />
+        <button className="button" onClick={()=>{alert(item.name)}}>
+          <MemberPage
+            key={item.id}
+            name={item.name}
+            profile_image={item.profile_image}
+            id={item.id}
+          />
+        </button>
       ))}
     </div>
   );
