@@ -1,0 +1,152 @@
+.registration-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 80%;
+    height: 80%;
+  }
+  
+  .left-container {
+    background-color: #f5f5f5;
+    width: 70%;
+    padding: 40px;
+    animation-name: slide-in-left;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+  
+  .left-container h1 {
+    margin-bottom: 30px;
+  }
+  
+  .square-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .registration-form {
+    background-color: #f5f5f5;
+    padding: 40px;
+    animation-name: slide-in-left;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+  
+  .registration-form label {
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .gender-container label {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .home-service-container label {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .photo-icon-container {
+    background-color: #c1d6d6;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    animation-name: slide-in-right;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+  
+  .photo-square-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .photo-icon-container img {
+    width: 100px;
+    margin-right: 20px;
+    transition: transform 0.5s;
+  }
+  
+  .photo-icon-container img:hover {
+    transform: rotate(360deg);
+  }
+  
+  .photo-icon-container p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="radio"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  input[type="radio"] {
+    display: inline-block;
+    width: auto;
+    margin-right: 20px;
+  }
+  
+  input[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
