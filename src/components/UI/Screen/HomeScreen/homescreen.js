@@ -1,6 +1,7 @@
 import React from "react";
 import "./homescreen.css";
 import ApiData from "../../backendapidata";
+import ProfilePic from "./profilepic";
 import { useState } from "react";
 
 const HomeScreen = () => {
@@ -42,7 +43,6 @@ const HomeScreen = () => {
         <button className="search-button" onClick={handleSearchButtonClick}>
           Search
         </button>
-      </div>
 
       <div className="profession_filter">
         <label>Filter</label>
@@ -56,11 +56,17 @@ const HomeScreen = () => {
           <option value="teacher">Teacher</option>
           <option value="other">Electrician</option>
         </select>
+        <div className="profile-pic">
+          <ProfilePic />
+        </div>
+
       </div>
+
+      </div>
+
       <div className="api-data">
         <ApiData />
       </div>
-      
     </div>
   );
 };
