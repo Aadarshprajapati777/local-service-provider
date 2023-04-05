@@ -26,7 +26,7 @@ const LoginPage = () => {
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
     alert("Login Successful");
-    navigate("/backendapidata");
+    navigate("/homescreen");
   };
 
   let name, value;

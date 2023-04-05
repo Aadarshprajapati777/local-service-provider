@@ -11,7 +11,7 @@ const navigate = useNavigate();
   const handleRegistrationFormSubmit = (e) => {
     e.preventDefault();
     alert("Registration Successful");
-    navigate("/backendapidata");
+    navigate("/homescreen");
   };
 
 
