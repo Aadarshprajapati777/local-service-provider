@@ -37,6 +37,13 @@ const navigate = useNavigate();
     setData({ ...data, [name]: value });
   };
 
+  const handleLoginButtonClick = () => {
+    alert("Login Button Clicked");
+    navigate("/login");
+  };
+
+
+
   return (
     <div className="registration-page">
       <div className="registration-container">
@@ -167,7 +174,9 @@ const navigate = useNavigate();
                 value={data.confirmPassword}
               />
             </label>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Sign Up" />
+            <button onClick={handleLoginButtonClick} className="login-button">Login</button>
+
           </form>
         </div>
         <div className="photo-icon-container">
