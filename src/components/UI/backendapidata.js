@@ -4,15 +4,15 @@ import { useState } from "react";
 import MemberPage from "./card/memberspage";
 import "./backendapidata.css";
 import { useNavigate } from "react-router-dom";
+// import HomeScreen from "./Screen/HomeScreen/homescreen";
 
 const ApiData = (props) => {
   const navigate = useNavigate();
 
-const handleProfileClick = (item) => {
-  alert("You clicked on " + item.name);
-  navigate("/userprofile", { state: item });
-};
-
+  const handleProfileClick = (item) => {
+    alert("You clicked on " + item.name);
+    navigate("/userprofile", { state: item });
+  };
 
   const [data, setData] = useState([]);
 
@@ -32,14 +32,16 @@ const handleProfileClick = (item) => {
     fetchApiData();
   }, []);
 
-  console.log(data);
-
-
 
   return (
     <div>
       {data.map((item) => (
-        <button className="button" onClick={()=>{handleProfileClick(item)}}>
+        <button
+          className="button"
+          onClick={() => {
+            handleProfileClick(item);
+          }}
+        >
           <MemberPage
             key={item.id}
             name={item.name}
