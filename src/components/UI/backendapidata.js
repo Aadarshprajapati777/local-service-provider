@@ -11,7 +11,7 @@ const ApiData = (props) => {
 
   const handleProfileClick = (item) => {
     alert("You clicked on " + item.name);
-    navigate("/userprofile", { state: item });
+    navigate("/memberprofile", { state: item });
   };
 
   const [data, setData] = useState([]);
@@ -31,7 +31,6 @@ const ApiData = (props) => {
   useEffect(() => {
     fetchApiData();
   }, []);
-
 
   return (
     <div>

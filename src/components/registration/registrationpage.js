@@ -122,9 +122,9 @@ const navigate = useNavigate();
                 value={data.profession}
               >
                 <option value="doctor">Doctor</option>
-                <option value="engineer">Plumber</option>
+                <option value="plumber">Plumber</option>
                 <option value="teacher">Teacher</option>
-                <option value="other">Electrician</option>
+                <option value="electrician">Electrician</option>
               </select>
             </div>
 

@@ -1,9 +1,9 @@
 import React from "react";
-import "./userprofile.css";
+import "./MemberProfile.css";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-const Userprofile = (props) => {
+const MemberProfile = (props) => {
   const [userProfileData, setUserProfileData] = useState({
     message: "",
   });
@@ -71,4 +71,4 @@ const Userprofile = (props) => {
     </div>
   );
 };
-export default Userprofile;
+export default MemberProfile;

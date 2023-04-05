@@ -59,3 +59,32 @@
   font-weight: bold;
 }
 
+
+
+.book_now,
+.contact,
+.more_about_my_self,
+.message {
+  background-color: #da0f0f;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.book_now:hover,
+.contact:hover,
+.more_about_my_self:hover,
+.message:hover {
+  background-color: #fff;
+  color: #da0f0f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}

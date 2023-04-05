@@ -6,7 +6,16 @@ import { useState } from "react";
 const HomeScreen = () => {
   const [homeScreenData, setHomeScreenData] = useState({
     search: "",
+    filter: "doctor",
   });
+
+  const handleProfessionFilter = (e) => {
+    console.log(e.target.value);
+    name = e.target.name;
+    value = e.target.value;
+    setHomeScreenData({ ...homeScreenData, [name]: value });
+  };
+
   const handleSearchButtonClick = () => {
     alert("You are looking for " + homeScreenData.search);
   };
@@ -34,9 +43,24 @@ const HomeScreen = () => {
           Search
         </button>
       </div>
+
+      <div className="profession_filter">
+        <label>Filter</label>
+        <select
+          name="filter"
+          onChange={handleProfessionFilter}
+          value={homeScreenData.filter}
+        >
+          <option value="doctor">Doctor</option>
+          <option value="engineer">Plumber</option>
+          <option value="teacher">Teacher</option>
+          <option value="other">Electrician</option>
+        </select>
+      </div>
       <div className="api-data">
         <ApiData />
       </div>
+      
     </div>
   );
 };
