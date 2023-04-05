@@ -11,12 +11,17 @@ const LoginPage = () => {
     password: "",
   });
 
-
-const handleSignUpButton = () => {
+  const handleSignUpButton = () => {
     alert("Sign Up Button Clicked");
     navigate("/registration");
+  };
+
+
+  const handleResetPasswordButton = () => {
+    alert("Reset Password Button Clicked");
+    navigate("/resetpassword");
     };
-    
+
 
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
@@ -59,12 +64,14 @@ const handleSignUpButton = () => {
       </form>
       <div>
         <h2>Don't have an account?</h2>
-        <button className="signup" onClick={handleSignUpButton}>Sign Up</button>
+        <button className="signup" onClick={handleSignUpButton}>
+          Sign Up
+        </button>
       </div>
 
       <div>
         <h2>Forgot your password?</h2>
-        <button className="reset">Reset Password</button>
+        <button className="reset" onClick={handleResetPasswordButton}>Reset Password</button>
       </div>
     </div>
   );

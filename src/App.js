@@ -4,6 +4,7 @@ import MemberPage from './components/UI/card/memberspage';
 import ApiData from './components/UI/backendapidata';
 import Userprofile from './components/UI/card/userprofile';
 import LoginPage from './components/login/loginpage';
+import ResetPassword from './components/resetpassword/resetpassword';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/userprofile" element={<Userprofile />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path ="/registration" element={<RegistrationPage />} />
+          <Route path="/resetpassword" element={<ResetPassword />} /> 
         </Routes>
       </Router>
 
