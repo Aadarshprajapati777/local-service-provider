@@ -7,11 +7,9 @@ const HomeScreen = () => {
   const [homeScreenData, setHomeScreenData] = useState({
     search: "",
   });
-
   const handleSearchButtonClick = () => {
-    alert("You are looking for " + homeScreenData.search);    
-};
-
+    alert("You are looking for " + homeScreenData.search);
+  };
 
   let name, value;
   const handleHomeScreenSearch = (e) => {
