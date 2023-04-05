@@ -4,12 +4,12 @@ import ApiData from "../../backendapidata";
 import ProfilePic from "./profilepic";
 import { useState } from "react";
 
+
 const HomeScreen = () => {
   const [homeScreenData, setHomeScreenData] = useState({
     search: "",
     filter: "doctor",
   });
-
   const handleProfessionFilter = (e) => {
     console.log(e.target.value);
     name = e.target.name;
@@ -19,6 +19,7 @@ const HomeScreen = () => {
 
   const handleSearchButtonClick = () => {
     alert("You are looking for " + homeScreenData.search);
+
   };
 
   let name, value;
@@ -32,7 +33,7 @@ const HomeScreen = () => {
   return (
     <div className="home_screen">
       <h1>Home Screen</h1>
-      <div className="search-bar">
+      <div >
         <input
           type="text"
           placeholder="Search"
@@ -44,24 +45,22 @@ const HomeScreen = () => {
           Search
         </button>
 
-      <div className="profession_filter">
-        <label>Filter</label>
-        <select
-          name="filter"
-          onChange={handleProfessionFilter}
-          value={homeScreenData.filter}
-        >
-          <option value="doctor">Doctor</option>
-          <option value="engineer">Plumber</option>
-          <option value="teacher">Teacher</option>
-          <option value="other">Electrician</option>
-        </select>
-        <div className="profile-pic">
-          <ProfilePic />
+        <div className="profession_filter">
+          <label>Filter</label>
+          <select
+            name="filter"
+            onChange={handleProfessionFilter}
+            value={homeScreenData.filter}
+          >
+            <option value="doctor">Doctor</option>
+            <option value="engineer">Plumber</option>
+            <option value="teacher">Teacher</option>
+            <option value="other">Electrician</option>
+          </select>
+          <div className="profile-pic">
+            <ProfilePic />
+          </div>
         </div>
-
-      </div>
-
       </div>
 
       <div className="api-data">

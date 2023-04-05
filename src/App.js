@@ -7,6 +7,7 @@ import LoginPage from './components/login/loginpage';
 import ResetPassword from './components/resetpassword/resetpassword';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from './components/UI/Screen/HomeScreen/homescreen';
+import UserProfile from './components/UI/Screen/UserProfile/userprofile';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path ="/registration" element={<RegistrationPage />} />
           <Route path="/resetpassword" element={<ResetPassword />} /> 
           <Route path="/homescreen" element={<HomeScreen />} />
+          <Route path="/userprofile" element={<UserProfile />} />
         </Routes>
       </Router>
 
