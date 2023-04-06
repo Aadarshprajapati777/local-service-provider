@@ -5,15 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const RegistrationPage = () => {
-
-const navigate = useNavigate();
-
-  const handleRegistrationFormSubmit = (e) => {
-    e.preventDefault();
-    alert("Registration Successful");
-    navigate("/homescreen");
-  };
-
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     fullName: "",
@@ -42,14 +34,83 @@ const navigate = useNavigate();
     navigate("/login");
   };
 
+  const postregistrationData = async (e) => {
+    e.preventDefault();
 
+    if (
+      !data.fullName ||
+      !data.gender ||
+      !data.phoneNumber ||
+      !data.address ||
+      !data.password ||
+      !data.confirmPassword ||
+      !data.profession
+    ) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    const {
+      fullName,
+      gender,
+      dob,
+      phoneNumber,
+      address,
+      homeService,
+      email,
+      password,
+      confirmPassword,
+      profession,
+    } = data;
+
+    const res = await fetch(
+      "https://local-service-provider-eccba-default-rtdb.firebaseio.com/registration.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          gender,
+          dob,
+          phoneNumber,
+          address,
+          homeService,
+          email,
+          password,
+          confirmPassword,
+          profession,
+        }),
+      }
+    );
+
+    if (res) {
+      setData({
+        fullName: "",
+        gender: "",
+        dob: "",
+        phoneNumber: "",
+        address: "",
+        homeService: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        profession: "",
+      });
+      alert("sign up Successful");
+      navigate("/homescreen");
+    } else {
+      alert("oops! something went wrong, please try again");
+    }
+  };
 
   return (
     <div className="registration-page">
       <div className="registration-container">
         <div className="left-container">
           <h1>Registration Page</h1>
-          <form className="registration-form" onSubmit={handleRegistrationFormSubmit}>
+          <form className="registration-form" method="POST">
             <label>
               Full Name:
               <input
@@ -57,6 +118,7 @@ const navigate = useNavigate();
                 name="fullName"
                 onChange={handleRegistrationFormInput}
                 value={data.fullName}
+                required
               />
             </label>
             <div className="gender-container">
@@ -67,6 +129,7 @@ const navigate = useNavigate();
                 name="gender"
                 checked={data.gender === "male"}
                 onChange={handleRegistrationFormInput}
+                required
               />{" "}
               Male
               <input
@@ -75,6 +138,7 @@ const navigate = useNavigate();
                 name="gender"
                 checked={data.gender === "female"}
                 onChange={handleRegistrationFormInput}
+                required
               />{" "}
               Female
               <input
@@ -83,6 +147,7 @@ const navigate = useNavigate();
                 name="gender"
                 checked={data.gender === "other"}
                 onChange={handleRegistrationFormInput}
+                required
               />{" "}
               Other
             </div>
@@ -102,6 +167,7 @@ const navigate = useNavigate();
                 name="phoneNumber"
                 onChange={handleRegistrationFormInput}
                 value={data.phoneNumber}
+                required
               />
             </label>
             <label>
@@ -111,6 +177,7 @@ const navigate = useNavigate();
                 name="address"
                 onChange={handleRegistrationFormInput}
                 value={data.address}
+                required
               />
             </label>
 
@@ -120,6 +187,7 @@ const navigate = useNavigate();
                 name="profession"
                 onChange={handleRegistrationFormInput}
                 value={data.profession}
+                required
               >
                 <option value="doctor">Doctor</option>
                 <option value="plumber">Plumber</option>
@@ -128,7 +196,10 @@ const navigate = useNavigate();
               </select>
             </div>
 
-            <div className="home-service-container" onChange={handleRegistrationFormInput}>
+            <div
+              className="home-service-container"
+              onChange={handleRegistrationFormInput}
+            >
               <label>Home Service:</label>
               <input
                 type="radio"
@@ -163,6 +234,7 @@ const navigate = useNavigate();
                 name="password"
                 onChange={handleRegistrationFormInput}
                 value={data.password}
+                required
               />
             </label>
             <label>
@@ -172,11 +244,20 @@ const navigate = useNavigate();
                 name="confirmPassword"
                 onChange={handleRegistrationFormInput}
                 value={data.confirmPassword}
+                required
               />
             </label>
-            <input type="submit" value="Sign Up" />
-            <button onClick={handleLoginButtonClick} className="login-button">Login</button>
+            <button
+              type="submit"
+              className="register-button"
+              onClick={postregistrationData}
+            >
+              sign up
+            </button>
 
+            <button onClick={handleLoginButtonClick} className="login-button">
+              Login
+            </button>
           </form>
         </div>
         <div className="photo-icon-container">
