@@ -40,7 +40,6 @@ const LoginPage = () => {
   return (
     <div className="container">
       <h1>Login Page</h1>
-
       <form onSubmit={handleLoginFormSubmit}>
         <label>
           Email:

@@ -3,9 +3,17 @@ import "./registrationpage.css";
 import photoIcon from "../../assets/images/photo-icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
+
+  const createuser = () => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, data.email, data.password).then(
+      alert("User Created Successfully")
+    );
+  };
 
   const [data, setData] = useState({
     fullName: "",
@@ -99,6 +107,7 @@ const RegistrationPage = () => {
         profession: "",
       });
       alert("sign up Successful");
+      createuser();
       navigate("/homescreen");
     } else {
       alert("oops! something went wrong, please try again");

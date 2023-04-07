@@ -27,6 +27,7 @@ const ApiData = (props) => {
       console.log(error);
     }
   };
+  
 
   useEffect(() => {
     fetchApiData();

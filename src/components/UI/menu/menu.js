@@ -11,7 +11,7 @@ const Menu = (props) => {
             <button className="help" onClick={props.handleHelpClick}>Help</button>
             <button className="mybookings" onClick={props.handleMyBookingsClick}>My Bookings</button>
             <button className="logout" onClick={props.handleLogoutClick}>Logout</button>
-        </div>
+        </div>      
     );
     }
 export default Menu;
