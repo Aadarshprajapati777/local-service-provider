@@ -1,7 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import "./loginpage.css";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "../UI/backend/firebase";
+import "./loginpage.css";
+
+const auth = getAuth(app);
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,30 +14,47 @@ const LoginPage = () => {
     password: "",
   });
 
-  const handleSignUpButton = () => {
-    alert("Sign Up Button Clicked");
-    navigate("/registration");
-  };
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
+  useEffect(() => {
+    const checkCurrentUser = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setLoggedInUser(user);
+      }
+    });
+    return checkCurrentUser;
+  }, []);
 
-  const handleResetPasswordButton = () => {
-    alert("Reset Password Button Clicked");
-    navigate("/resetpassword");
-    };
-
+  useEffect(() => {
+    if (loggedInUser) {
+      navigate("/homescreen", { state: loggedInUser.email });
+    }
+  }, [loggedInUser, navigate]);
 
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
-    alert("Login Successful");
-    navigate("/homescreen");
+    signInWithEmailAndPassword(auth, loginData.email, loginData.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setLoggedInUser(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
   };
 
-  let name, value;
   const handleLoginFormInput = (e) => {
-    console.log(e.target.value);
-    name = e.target.name;
-    value = e.target.value;
-    setLoginData({ ...loginData, [name]: value });
+    const { name, value } = e.target;
+    setLoginData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSignUpButton = () => {
+    navigate("/registration");
+  };
+
+  const handleResetPasswordButton = () => {
+    navigate("/resetpassword");
   };
 
   return (
@@ -46,8 +66,8 @@ const LoginPage = () => {
           <input
             type="email"
             name="email"
-            onChange={handleLoginFormInput}
             value={loginData.email}
+            onChange={handleLoginFormInput}
           />
         </label>
         <label>
@@ -55,8 +75,8 @@ const LoginPage = () => {
           <input
             type="password"
             name="password"
-            onChange={handleLoginFormInput}
             value={loginData.password}
+            onChange={handleLoginFormInput}
           />
         </label>
         <button type="submit">Login</button>
@@ -67,10 +87,11 @@ const LoginPage = () => {
           Sign Up
         </button>
       </div>
-
       <div>
         <h2>Forgot your password?</h2>
-        <button className="reset" onClick={handleResetPasswordButton}>Reset Password</button>
+        <button className="reset" onClick={handleResetPasswordButton}>
+          Reset Password
+        </button>
       </div>
     </div>
   );

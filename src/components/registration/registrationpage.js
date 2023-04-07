@@ -3,16 +3,21 @@ import "./registrationpage.css";
 import photoIcon from "../../assets/images/photo-icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { app } from "../UI/backend/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth(app);
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
 
   const createuser = () => {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, data.email, data.password).then(
-      alert("User Created Successfully")
-    );
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then(alert("User Created Successfully"))
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
 
   const [data, setData] = useState({
@@ -108,7 +113,7 @@ const RegistrationPage = () => {
       });
       alert("sign up Successful");
       createuser();
-      navigate("/homescreen");
+      navigate("/login");
     } else {
       alert("oops! something went wrong, please try again");
     }

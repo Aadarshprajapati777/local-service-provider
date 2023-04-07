@@ -3,9 +3,21 @@ import "./homescreen.css";
 import ApiData from "../../backendapidata";
 import ProfilePic from "./profilepic";
 import { useState } from "react";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "../../backend/firebase";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
-const HomeScreen = () => {
+const auth = getAuth(app);
+
+const HomeScreen = (props) => {
+  
+  const location = useLocation();
+  const loggedInUser = location.state;
+
+  const navigate = useNavigate();
+
   const [homeScreenData, setHomeScreenData] = useState({
     search: "",
     filter: "doctor",
@@ -22,6 +34,19 @@ const HomeScreen = () => {
 
   };
 
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        alert("You have been logged out");
+        navigate("/login");
+        
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+
   let name, value;
   const handleHomeScreenSearch = (e) => {
     console.log(e.target.value);
@@ -33,6 +58,7 @@ const HomeScreen = () => {
   return (
     <div className="home_screen">
       <h1>Home Screen</h1>
+      <h2>Welcome {loggedInUser}</h2>
       <div >
         <input
           type="text"
@@ -43,6 +69,10 @@ const HomeScreen = () => {
         />
         <button className="search-button" onClick={handleSearchButtonClick}>
           Search
+        </button>
+
+        <button className="sign-out-button" onClick={handleLogOut}>
+          Log Out
         </button>
 
         <div className="profession_filter">
