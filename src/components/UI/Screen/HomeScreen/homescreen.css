@@ -1,4 +1,4 @@
-.search-bar {
+/* .search-bar {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,5 +16,88 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     outline: none;
+  }
+   */
+   .home_screen {
+    background-color: #f7faff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .home_screen h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .home_screen input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 250px;
+  }
+  
+  .home_screen .search-button {
+    padding: 10px;
+    background-color: #6ba2ff;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home_screen .search-button:hover {
+    background-color: #3a7cff;
+  }
+  
+  .home_screen .sign-out-button {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #6ba2ff;
+    border-radius: 5px;
+    color: #6ba2ff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  .home_screen .sign-out-button:hover {
+    background-color: #6ba2ff;
+    color: #fff;
+  }
+  
+  .home_screen .profession_filter {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .home_screen .profession_filter label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .home_screen .profession_filter select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 150px;
+  }
+  
+  .home_screen .profile-pic {
+    margin-left: auto;
+  }
+  
+  .home_screen .api-data {
+    margin-top: 20px;
+    width: 100%;
   }
   

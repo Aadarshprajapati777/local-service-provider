@@ -7,9 +7,8 @@ import { app } from "../UI/backend/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {getFirestore, collection, addDoc} from "firebase/firestore";
 
+
 const firebaseStore = getFirestore(app);
-
-
 const auth = getAuth(app);
 
 const RegistrationPage = () => {

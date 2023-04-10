@@ -11,7 +11,6 @@ import { useLocation } from "react-router-dom";
 const auth = getAuth(app);
 
 const HomeScreen = (props) => {
-  
   const location = useLocation();
   const loggedInUser = location.state;
 
@@ -26,11 +25,11 @@ const HomeScreen = (props) => {
     name = e.target.name;
     value = e.target.value;
     setHomeScreenData({ ...homeScreenData, [name]: value });
+    alert(`Filter has been changed to ${value}`);
   };
 
   const handleSearchButtonClick = () => {
     alert("You are looking for " + homeScreenData.search);
-
   };
 
   const handleLogOut = () => {
@@ -38,13 +37,11 @@ const HomeScreen = (props) => {
       .then(() => {
         alert("You have been logged out");
         navigate("/login");
-        
       })
       .catch((error) => {
         alert(error.message);
       });
   };
-
 
   let name, value;
   const handleHomeScreenSearch = (e) => {
@@ -57,8 +54,7 @@ const HomeScreen = (props) => {
   return (
     <div className="home_screen">
       <h1>Home Screen</h1>
-      <h2>Welcome {loggedInUser}</h2>
-      <div >
+      <div>
         <input
           type="text"
           placeholder="Search"
@@ -82,12 +78,12 @@ const HomeScreen = (props) => {
             value={homeScreenData.filter}
           >
             <option value="doctor">Doctor</option>
-            <option value="engineer">Plumber</option>
+            <option value="plumber">Plumber</option>
             <option value="teacher">Teacher</option>
-            <option value="other">Electrician</option>
+            <option value="electrician">Electrician</option>
           </select>
           <div className="profile-pic">
-            <ProfilePic />
+            <ProfilePic loggedInUser={loggedInUser} />
           </div>
         </div>
       </div>

@@ -22,6 +22,8 @@ const ApiData = (props) => {
       profile_image: doc.data().profile_image,
       address: doc.data().address,
       profession: doc.data().profession,
+      contact: doc.data().phoneNumber,
+      homeservice: doc.data().homeService,
       id: doc.id,
       ...doc.data(),
     }));
@@ -46,6 +48,9 @@ const ApiData = (props) => {
             name={item.name}
             profile_image={item.profile_image}
             profession={item.profession}
+            address={item.address}
+            contact={item.contact}
+            homeservice={item.homeservice}
           />
         </button>
       ))}

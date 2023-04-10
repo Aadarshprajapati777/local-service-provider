@@ -24,15 +24,15 @@ const MemberProfile = (props) => {
   };
 
   const handleContactButtonClick = () => {
-    alert("You are contacting the service provider ");
-  };
+    alert("You are contacting the service provider , my number is " + phoneNumber);
+  }
 
   const handleMoreAboutMyselfButtonClick = () => {
-    alert("You are viewing more about the service provider ");
+    alert("You are viewing more about the service provider , my address is " + address);
   };
 
   const location = useLocation();
-  const { name, profile_image, id } = location.state;
+  const { name, profile_image, profession,address,phoneNumber} = location.state;
 
   return (
     <div>
@@ -40,7 +40,7 @@ const MemberProfile = (props) => {
       <div className="member_profile_container">
         <h1 className="member_name">{name}</h1>
         <img src={profile_image} alt="members_image" className="member_photo" />
-        <h2 className="members_id">{id}</h2>
+        <h2 className="members_id">{profession}</h2>
       </div>
       <div>
         <button className="book_now" onClick={handleBookNowButtonClick}>
