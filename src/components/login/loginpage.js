@@ -16,6 +16,7 @@ const LoginPage = () => {
 
   const [loggedInUser, setLoggedInUser] = useState(null);
 
+  
   useEffect(() => {
     const checkCurrentUser = auth.onAuthStateChanged((user) => {
       if (user) {

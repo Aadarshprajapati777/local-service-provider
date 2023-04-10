@@ -8,7 +8,6 @@ import { app } from "../../backend/firebase";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-
 const auth = getAuth(app);
 
 const HomeScreen = (props) => {

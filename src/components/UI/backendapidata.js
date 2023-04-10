@@ -1,10 +1,8 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MemberPage from "./card/memberspage";
 import "./backendapidata.css";
-import { useNavigate } from "react-router-dom";
-// import HomeScreen from "./Screen/HomeScreen/homescreen";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 const ApiData = (props) => {
   const navigate = useNavigate();
@@ -16,21 +14,22 @@ const ApiData = (props) => {
 
   const [data, setData] = useState([]);
 
-  const fetchApiData = async () => {
-    try {
-      const response = await fetch(
-        "https://thehuntsman4.pythonanywhere.com/api/"
-      );
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const fetchUserData = async () => {
+    const db = getFirestore();
+    const querySnapshot = await getDocs(collection(db, "users"));
+    const userData = querySnapshot.docs.map((doc) => ({
+      name: doc.data().fullName,
+      profile_image: doc.data().profile_image,
+      address: doc.data().address,
+      profession: doc.data().profession,
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setData(userData);
   };
-  
 
   useEffect(() => {
-    fetchApiData();
+    fetchUserData();
   }, []);
 
   return (
@@ -38,15 +37,15 @@ const ApiData = (props) => {
       {data.map((item) => (
         <button
           className="button"
+          key={item.id}
           onClick={() => {
             handleProfileClick(item);
           }}
         >
           <MemberPage
-            key={item.id}
             name={item.name}
             profile_image={item.profile_image}
-            id={item.id}
+            profession={item.profession}
           />
         </button>
       ))}

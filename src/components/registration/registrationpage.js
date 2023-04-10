@@ -5,6 +5,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { app } from "../UI/backend/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {getFirestore, collection, addDoc} from "firebase/firestore";
+
+const firebaseStore = getFirestore(app);
+
 
 const auth = getAuth(app);
 
@@ -32,6 +36,27 @@ const RegistrationPage = () => {
     confirmPassword: "",
     profession: "",
   });
+
+const writeUserData = async (data) => {
+  try {
+    await addDoc(collection(firebaseStore, "users"), {
+      fullName: data.fullName,
+      gender:data.gender,
+      dob:data.dob,
+      phoneNumber:data.phoneNumber,
+      address:data.address,
+      homeService:data.homeService,
+      email:data.email,
+      password:data.password,
+      confirmPassword:data.confirmPassword,
+      profession:data.profession,
+    });
+    console.log("Document written with ID: ", writeUserData.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
 
   let name, value;
 
@@ -112,6 +137,7 @@ const RegistrationPage = () => {
         profession: "",
       });
       alert("sign up Successful");
+      writeUserData(data);
       createuser();
       navigate("/login");
     } else {
