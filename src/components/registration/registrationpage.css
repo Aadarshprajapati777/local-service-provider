@@ -49,7 +49,7 @@ body {
 
 .left-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
 }
 
 h1 {
@@ -105,5 +105,4 @@ button {
 .login-button {
   background-color: #008CBA;
   color: #fff;
-  margin-left: 10px;
 }
