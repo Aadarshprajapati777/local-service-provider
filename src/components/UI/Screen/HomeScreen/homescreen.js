@@ -7,6 +7,8 @@ import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../backend/firebase";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+// import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
 
 const auth = getAuth(app);
 
@@ -18,6 +20,7 @@ const HomeScreen = (props) => {
     search: "",
     filter: "doctor",
   });
+
   const handleProfessionFilter = (e) => {
     console.log(e.target.value);
     name = e.target.name;
@@ -26,9 +29,30 @@ const HomeScreen = (props) => {
     alert(`Filter has been changed to ${value}`);
   };
 
-  const handleSearchButtonClick = () => {
+  const handleSearchButtonClick = (e) => {
+    e.preventDefault();
+    // const searchValue = homeScreenData.search.toLowerCase();
+    // const filterValue = homeScreenData.filter;
+    // const filteredData = [];
+    
+    // ApiData.filter((data) => {
+    //   if (data.profession === filterValue && data.fullname.toLowerCase().includes(searchValue)) {
+    //     filteredData.push(data);
+    //   }
+    // });
+
+    // // Send filteredData to Firebase and retrieve filtered results
+    // const dbRef = firebase.database().ref('filteredData');
+    // dbRef.set(filteredData).then(() => {
+    //   dbRef.on('value', (snapshot) => {
+    //     const data = snapshot.val();
+    //     console.log(data);
+    //   });
+    // });
+
     alert("You are looking for " + homeScreenData.search);
   };
+
 
   const handleLogOut = () => {
     signOut(auth)
@@ -47,6 +71,7 @@ const HomeScreen = (props) => {
     name = e.target.name;
     value = e.target.value;
     setHomeScreenData({ ...homeScreenData, [name]: value });
+
   };
 
   return (

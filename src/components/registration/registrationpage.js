@@ -4,13 +4,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { app } from "../UI/backend/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {getFirestore, collection, addDoc} from "firebase/firestore";
-import { storage } from "../UI/backend/firebase";
-
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 const firebaseStore = getFirestore(app);
 const auth = getAuth(app);
-
+const storage = getStorage(app);
 const RegistrationPage = () => {
   const navigate = useNavigate();
 
@@ -35,28 +34,50 @@ const RegistrationPage = () => {
     confirmPassword: "",
     profession: "",
     profilePhoto: "",
+    pic: "",
   });
 
-const writeUserData = async (data) => {
-  try {
-    await addDoc(collection(firebaseStore, "users"), {
-      fullName: data.fullName,
-      gender:data.gender,
-      dob:data.dob,
-      phoneNumber:data.phoneNumber,
-      address:data.address,
-      homeService:data.homeService,
-      email:data.email,
-      password:data.password,
-      confirmPassword:data.confirmPassword,
-      profession:data.profession,
-    });
-    console.log("Document written with ID: ", writeUserData.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-};
+  // const [pic , setPic] = useState("");
 
+  // const handlePhotoUpload = async () => {
+  //   const imageRef = ref(storage, `uploads/images/${Date.now()}-${pic.name}`);
+  //   const uploadResult = await uploadBytes(imageRef, pic);
+  //   console.log(uploadResult);
+  // }
+
+  // const handlePhotoUpload = async () => {
+  //   const imageRef = ref(storage, `uploads/images/${Date.now()}-${data.pic.name}`);
+  //   const uploadResult = await uploadBytes(imageRef, data.pic);
+  //   console.log(uploadResult);
+  // };
+
+  const writeUserData = async (data) => {
+    try {
+      const imageRef = ref(
+        storage,
+        `uploads/images/${Date.now()}-${data.pic.name}`
+      );
+      await uploadBytes(imageRef, data.pic);
+
+      await addDoc(collection(firebaseStore, "users"), {
+        fullName: data.fullName,
+        gender: data.gender,
+        dob: data.dob,
+        phoneNumber: data.phoneNumber,
+        address: data.address,
+        homeService: data.homeService,
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        profession: data.profession,
+        imageUrl: imageRef.fullPath,
+      });
+
+      console.log("User data written successfully");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   let name, value;
 
@@ -74,8 +95,6 @@ const writeUserData = async (data) => {
 
   const postregistrationData = async (e) => {
     e.preventDefault();
-
-    
 
     if (
       !data.fullName ||
@@ -141,13 +160,14 @@ const writeUserData = async (data) => {
       alert("sign up Successful");
       writeUserData(data);
       createuser();
+      // handlePhotoUpload();
       navigate("/login");
     } else {
       alert("oops! something went wrong, please try again");
     }
   };
 
-  // const handlePhotoUpload =  
+  // const handlePhotoUpload =
 
   return (
     <div className="registration-page">
@@ -165,6 +185,19 @@ const writeUserData = async (data) => {
                 required
               />
             </label>
+            <div className="upload-container">
+              <label className="upload-label">
+                Upload Profile Image:
+                <input
+                  type="file"
+                  name="profileImage"
+                  onChange={(e) => {
+                    setData({ ...data, pic: e.target.files[0] });
+                  }}
+                />
+                {/* <button className="upload-button" onClick={handlePhotoUpload}>Upload</button> */}
+              </label>
+            </div>
             <div className="gender-container">
               <label>Gender:</label>
               <input
@@ -305,9 +338,8 @@ const writeUserData = async (data) => {
           </form>
         </div>
         <div className="photo-icon-container">
-          <p>Upload Photo</p>
-          <input type="file" name="photo" onChange={(e) => setProfilePhoto(e.target.files[0])} />
-          <button onClick={handlePhotoUpload}>Upload</button>
+          {/* <image src={photoIcon} alt="Upload photo" /> */}
+          {/* <p>Upload Photo</p> */}
         </div>
       </div>
     </div>
