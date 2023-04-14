@@ -159,6 +159,16 @@ const RegistrationPage = () => {
                 required
               />
             </label>
+            <div className="upload-container">
+              <label className="upload-label">
+                Upload Profile Image:
+                <input
+                  type="file"
+                  name="profileImage"
+                //onChange={handleProfileImageUpload}//
+                />
+              </label>
+            </div>
             <div className="gender-container">
               <label>Gender:</label>
               <input
@@ -188,12 +198,6 @@ const RegistrationPage = () => {
                 required
               />{" "}
               Other
-            </div>
-            <div>
-              <label>
-                Upload Profile Image:
-                <input type="file" name="image" accept="image/*" />
-              </label>
             </div>
             <label>
               Date of Birth:
