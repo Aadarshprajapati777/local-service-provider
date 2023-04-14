@@ -1,11 +1,10 @@
 import React from "react";
 import "./registrationpage.css";
-import photoIcon from "../../assets/images/photo-icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { app } from "../UI/backend/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {getFirestore, collection, addDoc} from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 
 const firebaseStore = getFirestore(app);
@@ -36,25 +35,25 @@ const RegistrationPage = () => {
     profession: "",
   });
 
-const writeUserData = async (data) => {
-  try {
-    await addDoc(collection(firebaseStore, "users"), {
-      fullName: data.fullName,
-      gender:data.gender,
-      dob:data.dob,
-      phoneNumber:data.phoneNumber,
-      address:data.address,
-      homeService:data.homeService,
-      email:data.email,
-      password:data.password,
-      confirmPassword:data.confirmPassword,
-      profession:data.profession,
-    });
-    console.log("Document written with ID: ", writeUserData.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-};
+  const writeUserData = async (data) => {
+    try {
+      await addDoc(collection(firebaseStore, "users"), {
+        fullName: data.fullName,
+        gender: data.gender,
+        dob: data.dob,
+        phoneNumber: data.phoneNumber,
+        address: data.address,
+        homeService: data.homeService,
+        email: data.email,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        profession: data.profession,
+      });
+      console.log("Document written with ID: ", writeUserData.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
 
 
   let name, value;
@@ -160,6 +159,16 @@ const writeUserData = async (data) => {
                 required
               />
             </label>
+            <div className="upload-container">
+              <label className="upload-label">
+                Upload Profile Image:
+                <input
+                  type="file"
+                  name="profileImage"
+                //onChange={handleProfileImageUpload}//
+                />
+              </label>
+            </div>
             <div className="gender-container">
               <label>Gender:</label>
               <input
@@ -299,10 +308,7 @@ const writeUserData = async (data) => {
             </button>
           </form>
         </div>
-        <div className="photo-icon-container">
-          <image src={photoIcon} alt="Upload photo" />
-          <p>Upload Photo</p>
-        </div>
+
       </div>
     </div>
   );
