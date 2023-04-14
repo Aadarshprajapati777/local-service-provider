@@ -1,6 +1,5 @@
 import React from "react";
 import "./registrationpage.css";
-import photoIcon from "../../assets/images/photo-icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { app } from "../UI/backend/firebase";
@@ -189,6 +188,12 @@ const RegistrationPage = () => {
                 required
               />{" "}
               Other
+            </div>
+            <div>
+              <label>
+                Upload Profile Image:
+                <input type="file" name="image" accept="image/*" />
+              </label>
             </div>
             <label>
               Date of Birth:
