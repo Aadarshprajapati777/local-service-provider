@@ -1,11 +1,11 @@
 import React from "react";
 import "./registrationpage.css";
-import photoIcon from "../../assets/images/photo-icon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { app } from "../UI/backend/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {getFirestore, collection, addDoc} from "firebase/firestore";
+import { storage } from "../UI/backend/firebase";
 
 
 const firebaseStore = getFirestore(app);
@@ -34,6 +34,7 @@ const RegistrationPage = () => {
     password: "",
     confirmPassword: "",
     profession: "",
+    profilePhoto: "",
   });
 
 const writeUserData = async (data) => {
@@ -73,6 +74,8 @@ const writeUserData = async (data) => {
 
   const postregistrationData = async (e) => {
     e.preventDefault();
+
+    
 
     if (
       !data.fullName ||
@@ -143,6 +146,8 @@ const writeUserData = async (data) => {
       alert("oops! something went wrong, please try again");
     }
   };
+
+  // const handlePhotoUpload =  
 
   return (
     <div className="registration-page">
@@ -300,8 +305,9 @@ const writeUserData = async (data) => {
           </form>
         </div>
         <div className="photo-icon-container">
-          <image src={photoIcon} alt="Upload photo" />
           <p>Upload Photo</p>
+          <input type="file" name="photo" onChange={(e) => setProfilePhoto(e.target.files[0])} />
+          <button onClick={handlePhotoUpload}>Upload</button>
         </div>
       </div>
     </div>

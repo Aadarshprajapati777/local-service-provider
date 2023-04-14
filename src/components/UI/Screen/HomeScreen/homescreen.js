@@ -13,9 +13,7 @@ const auth = getAuth(app);
 const HomeScreen = (props) => {
   const location = useLocation();
   const loggedInUser = location.state;
-
   const navigate = useNavigate();
-
   const [homeScreenData, setHomeScreenData] = useState({
     search: "",
     filter: "doctor",
@@ -87,7 +85,6 @@ const HomeScreen = (props) => {
           </div>
         </div>
       </div>
-
       <div className="api-data">
         <ApiData />
       </div>
