@@ -89,7 +89,9 @@ const RegistrationPage = () => {
       !data.address ||
       !data.password ||
       !data.confirmPassword ||
-      !data.profession
+      !data.profession ||
+      !data.pic
+      
     ) {
       alert("Please fill in all required fields");
       return;
