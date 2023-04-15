@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MemberPage from "./card/memberspage";
 import "./backendapidata.css";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const ApiData = (props) => {
   const navigate = useNavigate();
@@ -17,16 +18,24 @@ const ApiData = (props) => {
   const fetchUserData = async () => {
     const db = getFirestore();
     const querySnapshot = await getDocs(collection(db, "users"));
-    const userData = querySnapshot.docs.map((doc) => ({
-      name: doc.data().fullName,
-      profile_image: doc.data().profile_image,
-      address: doc.data().address,
-      profession: doc.data().profession,
-      contact: doc.data().phoneNumber,
-      homeservice: doc.data().homeService,
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const storage = getStorage();
+    const userData = await Promise.all(
+      querySnapshot.docs.map(async (doc) => {
+        const profileImageUrl = await getDownloadURL(
+          ref(storage, doc.data().imageUrl)
+        );
+        return {
+          name: doc.data().fullName,
+          profile_image: profileImageUrl,
+          address: doc.data().address,
+          profession: doc.data().profession,
+          contact: doc.data().phoneNumber,
+          homeservice: doc.data().homeService,
+          id: doc.id,
+          ...doc.data(),
+        };
+      })
+    );
     setData(userData);
   };
 

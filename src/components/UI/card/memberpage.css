@@ -13,8 +13,8 @@
   flex-direction: column; 
   justify-content: center;
   align-items: center;
-  height: 150px;
-  width: 125px;
+  height: 180px;
+  width: 180px;
 }
 
 .card_container:hover {
@@ -28,7 +28,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: bold;
-}
+} 
 
 .member_photo {
   border-radius: 50%;
@@ -39,7 +39,7 @@
 }
 
 .member_photo:hover {
-  transform: scale(1.1);
+  transform: scale(2);
 }
 
 .row {
