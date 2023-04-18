@@ -76,8 +76,8 @@ const HomeScreen = (props) => {
 
   return (
     <div className="home_screen">
-      <h1>Home Screen</h1>
-      <div>
+      <h1>Home Screen</h1>  
+      <div className="search">
         <input
           type="text"
           placeholder="Search"

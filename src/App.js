@@ -8,13 +8,15 @@ import ResetPassword from './components/resetpassword/resetpassword';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from './components/UI/Screen/HomeScreen/homescreen';
 import UserProfile from './components/UI/Screen/UserProfile/userprofile';
+import Home from './components/Landing page/Home/Home';
 
 
 function App() {
   return (
       <Router>
         <Routes>
-          <Route path="/" element={<RegistrationPage />} />
+          <Route path='/' element={<Home />} />
+          <Route path="/registrationpage" element={<RegistrationPage />} />
           <Route path="/backendapidata" element={<ApiData />} />
           <Route path="/members" element={<MemberPage />} />
           <Route path="/memberprofile" element={<MemberProfile />} />
