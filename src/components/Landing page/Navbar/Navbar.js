@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Logo from "./logo.png";
-import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -12,9 +12,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
-import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
-import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import './navbar.css';
 
 const Navbar = () => {
@@ -35,6 +33,8 @@ const Navbar = () => {
     },
 
   ]
+  const navigate = useNavigate();
+
   return (
     <nav >
       <div className='nav-logo-container'>
@@ -44,7 +44,7 @@ const Navbar = () => {
         <a href=''>Home</a>
         <a href=''>About</a>
         <a href=''>Contact</a>
-        <button className='primary-button'>
+        <button className='primary-button' >
           Get Started
         </button>
         <div className='navbar-menu-container'>
