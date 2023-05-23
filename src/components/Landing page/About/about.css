@@ -1,0 +1,21 @@
+.about-section-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about-section-text-container {
+    flex: 1;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img {
+
+    max-width: 100%;
+    max-height: 120%;
+}
